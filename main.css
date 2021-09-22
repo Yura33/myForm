@@ -54,11 +54,10 @@ body {
 
 .form__label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     font-weight: 700;
     color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
 }
 
 .form__input {
@@ -111,7 +110,7 @@ body {
 
 .error {
     position: absolute;
-    top: 5px;
+    top: 17px;
     right: 0;
     font-size: 14px;
     color: #d40202;

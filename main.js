@@ -32,43 +32,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function isValid() {
         const regExp = {
-            email: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+            login: /^\S*$/,
+            email: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,4}$/i,
             password: /[^\w\d]*(([0-9]+.*[A-Za-z]+.*)|[A-Za-z]+.*([0-9]+.*))/
         }
         
-        let isValid = true;
+        let isValid = false;
 
         inputs.forEach(item => {
             if(!item.value.trim()) {
-                isValid = false;
                 item.nextElementSibling.innerText = 'Это поле обязательно для заполнения';
                 item.classList.add('_error');
             } else {
                 item.nextElementSibling.innerText = '';
                 item.classList.remove('_error');
-                isValid = true;
             }            
         });
 
+        if(login.value.trim() && !regExp.login.test(login.value)) {
+            login.nextElementSibling.innerText = 'Поле не должно содержать пробелов';
+            login.classList.add('_error');
+        } 
         if(login.value.trim() && login.value.length < 4) {
-            isValid = false;
             login.nextElementSibling.innerText = 'Поле должно содержать не менее 4 символов';
             login.classList.add('_error');
         } 
         if(login.value.trim() && login.value.length > 10) {
-            isValid = false;
             login.nextElementSibling.innerText = 'Поле должно содержать не более 10 символов';
             login.classList.add('_error');
         }
-        
         if(email.value.trim() && !regExp.email.test(email.value)) {
-            isValid = false;
             email.nextElementSibling.innerText = 'Введите действительный адрес электронной почты';
             email.classList.add('_error');
         } 
-        
+        if(password.value.trim() && !regExp.password.test(password.value)) {
+            password.nextElementSibling.innerText = 'Введите надёжный пароль';
+            password.classList.add('_error');
+        } 
+        if(login.value.trim().length > 3 && login.value.trim().length < 11 && regExp.login.test(login.value) && regExp.email.test(email.value) && regExp.password.test(password.value)) {
+            isValid = true;
+        }
         return isValid;
     }
-    
 })
 
