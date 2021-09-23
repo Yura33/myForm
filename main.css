@@ -23,7 +23,9 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center; 
+    padding-right: 15px;
+    padding-left: 15px;   
     height: 100vh;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -82,7 +84,7 @@ body {
     border: none;
     border-radius: 10px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 8px;
     background-color: #00bf72;
     cursor: pointer;
     transition-property: background-color, box-shadow;
@@ -117,9 +119,20 @@ body {
 }
 
 .greeting {
+    text-align: center;
     font-size: 60px;
     font-weight: 700;
     letter-spacing: 2px;
     word-spacing: 5px;
     color: #fff;
+}
+
+@media (max-width: 380px) {
+    .error {
+        top: 18px;
+        font-size: 11px;
+    }
+    .greeting {
+        font-size: 50px;
+    }
 }
