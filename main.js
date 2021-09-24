@@ -1,6 +1,6 @@
 'use strict'
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
 
     const form = document.querySelector('.form'),
         login = document.getElementById('login'),
@@ -14,15 +14,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function submit(event) {
         event.preventDefault();
-        if(isValid()) {
+        if ( isValid() ) {
             const str = document.createElement('div');
             const data = {
                 login: login.value,
                 email: email.value,
                 password: password.value
             };
-            
             const res = await sendData('https://jsonplaceholder.typicode.com/posts', data);
+            
             try {
                 form.style = 'display: none';
                 str.innerText = `Hi ${res.login}!!!`;
@@ -45,12 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
             login: /^\S*$/,
             email: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,4}$/i,
             password: /[^\w\d]*(([0-9]+.*[A-Za-z]+.*)|[A-Za-z]+.*([0-9]+.*))/
-        }
+        };
         
         let isValid = false;
 
         inputs.forEach(item => {
-            if(!item.value.trim()) {
+            if (!item.value.trim()) {
                 item.nextElementSibling.innerText = 'This field is required';
                 item.classList.add('_error');
             } else {
@@ -59,27 +59,27 @@ document.addEventListener('DOMContentLoaded', function () {
             }            
         });
 
-        if(login.value.trim() && !regExp.login.test(login.value)) {
+        if (login.value.trim() && !regExp.login.test(login.value)) {
             login.nextElementSibling.innerText = 'The field must not contain spaces';
             login.classList.add('_error');
         } 
-        if(login.value.trim() && login.value.length < 4) {
+        if (login.value.trim() && login.value.length < 4) {
             login.nextElementSibling.innerText = 'The field must contain at least 4 characters';
             login.classList.add('_error');
         } 
-        if(login.value.trim() && login.value.length > 10) {
+        if (login.value.trim() && login.value.length > 10) {
             login.nextElementSibling.innerText = 'The field must contain less than 11 characters';
             login.classList.add('_error');
         }
-        if(email.value.trim() && !regExp.email.test(email.value)) {
+        if (email.value.trim() && !regExp.email.test(email.value)) {
             email.nextElementSibling.innerText = 'Enter a valid email address';
             email.classList.add('_error');
         } 
-        if(password.value.trim() && !regExp.password.test(password.value)) {
+        if (password.value.trim() && !regExp.password.test(password.value)) {
             password.nextElementSibling.innerText = 'The password must contain at least 1 digit';
             password.classList.add('_error');
         } 
-        if(login.value.trim().length > 3 && login.value.trim().length < 11 && regExp.login.test(login.value) && regExp.email.test(email.value) && regExp.password.test(password.value)) {
+        if (login.value.trim().length > 3 && login.value.trim().length < 11 && regExp.login.test(login.value) && regExp.email.test(email.value) && regExp.password.test(password.value)) {
             isValid = true;
         }
         return isValid;
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
               }
-        })
+        });
 
         if (!response.ok) {
             throw new Error(`Error at the address ${url}, error status ${response}`);
